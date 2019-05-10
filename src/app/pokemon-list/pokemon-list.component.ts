@@ -12,15 +12,19 @@ export class PokemonListComponent implements OnInit {
 
   pokemons: Pokemon[];
   pokemon: Pokemon;
-  offset: number;
+  private offset: number;
 
   constructor(private pokemonService: PokemonService) { }
 
   async ngOnInit() {
-    const data = await this.pokemonService.getPokemonList();
-
-    this.pokemons = data.results;
-    this.offset = this.getOffset(data.next);
+    try {
+      const data = await this.pokemonService.getPokemonList();
+  
+      this.pokemons = data.results;
+      this.offset = this.getOffset(data.next);
+    } catch (e) {
+      this.errorLogger(e);
+    }
   }
 
 
@@ -42,14 +46,9 @@ export class PokemonListComponent implements OnInit {
     }
   }
 
-  private getOffset(url: string): number {
-    return +(new URL(url)).searchParams.get('offset');
-  }
-
   async loadDetails(name: string) {
     try {
       this.pokemon = await this.pokemonService.getPokemon(name);
-      console.log(this.pokemon);
     } catch(e) {
       this.errorLogger(e);
     }
@@ -57,5 +56,9 @@ export class PokemonListComponent implements OnInit {
 
   private errorLogger(e): void {
     console.error('Something went wrong:', e);
+  }
+
+  private getOffset(url: string): number {
+    return +(new URL(url)).searchParams.get('offset');
   }
 }
