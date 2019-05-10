@@ -1,0 +1,64 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2 class="title">Pokedex</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 order-md-8 col-12" *ngIf="pokemon">
+      <div class="pokemon-image text-center">
+          <img [src]="pokemon.sprites.front_default" alt="">
+      </div>
+
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>{{ pokemon.name }}</th>
+          </tr>
+          <tr>
+            <th>Id</th>
+            <th>{{ pokemon.id }}</th>
+          </tr>
+          <tr>
+            <th>Weight</th>
+            <th>{{ pokemon.weight }}</th>
+          </tr>
+          <tr>
+            <th>Height</th>
+            <th>{{ pokemon.height }}</th>
+          </tr>
+          <tr>
+            <th>Types</th>
+            <th>
+              <p *ngFor="let t of pokemon.types">{{ t.type.name }}</p>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-md-8 order-md-4 col-12">
+      <div class="row" *ngIf="pokemons">
+        <div class="col-sm-4 col-6" *ngFor="let pokemon of pokemons; let i = index;">
+          <div class="pokemon-list" (click)="loadDetails(pokemon.name)">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{getPokemonId(pokemon.url)}}.png" alt="pokemon">
+              <p>
+                {{ pokemon.name }}
+              </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">          
+          <button type="button" class="btn btn-primary btn-block" (click)="loadMore()">Load More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

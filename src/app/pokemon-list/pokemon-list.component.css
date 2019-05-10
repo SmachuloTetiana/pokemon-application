@@ -1,0 +1,36 @@
+
+.title {
+    text-transform: uppercase;
+    border: 1px solid #2062ac;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Arial';
+    color: #2062ac;
+}
+
+.pokemon-list {
+    border: 1px solid #bdc5e6;
+    margin: 20px 0;
+    text-align: center;
+    border-radius: 5px;
+	-webkit-transition: 0.4s Ease;
+	-moz-transition: 0.4s Ease;
+	-o-transition: 0.4s Ease;
+    transition: 0.4s Ease;
+    cursor: pointer;
+}
+
+.pokemon-list p {
+    font-weight: 500;
+    text-transform: capitalize;
+    font-family: 'Arial';
+    color: #2062ac;
+}
+
+.pokemon-list:hover {
+    border-color: #2062ac;
+}
+
+.pokemon-list:hover p {
+    color: #cd3939;
+}
