@@ -13,6 +13,7 @@ export class PokemonListComponent implements OnInit {
   pokemons: Pokemon[];
   pokemon: Pokemon;
   private offset: number;
+  wasClicked: string;
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -49,6 +50,7 @@ export class PokemonListComponent implements OnInit {
   async loadDetails(name: string) {
     try {
       this.pokemon = await this.pokemonService.getPokemon(name);
+      this.wasClicked = name;
     } catch(e) {
       this.errorLogger(e);
     }

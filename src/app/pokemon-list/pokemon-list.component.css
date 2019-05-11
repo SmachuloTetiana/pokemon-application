@@ -34,3 +34,12 @@
 .pokemon-list:hover p {
     color: #cd3939;
 }
+
+.active {
+    border-color: #2062ac;
+}
+
+.active p {
+    color: #cd3939;
+    font-weight: bold;
+}
